@@ -1,0 +1,110 @@
+								
+								SQL(Structure Query Language)
+								
+DDL						DML					DCL 				TCL						DRL
+Data Def. 			Data Manipulation 	Data Control 		Transaction Control		Data Retrival 
+Language			Language			Language			Language				Language
+
+CREATE				INSERT				Grant				Backup/Restore			SELECT
+ALTER				UPDATE				Revoke				Commit/Rollback
+DROP				DELETE
+
+Database 	: Collection of data in the form of Tables.
+Tables 		: Collection of data in the form of Rows and columns.
+
+SQLServer
+DB-2
+ORACLE
+MySQL
+
+Datatypes:
+
+Java			SQL				number of bytes allocated
+
+byte			tinyint					1
+short			smallint				2
+int				int						4
+long			bigint					8
+float			float					4
+double			double					8
+boolean			bool/boolean			1
+char			char/varchar/varchar2	1
+
+numeric(25)
+decimal(25,5)
+
+char(20)
+varchar(20)
+
+Queries:
+SHOW DATABASES;
+CREATE DATABASE db25;
+USE db25;
+CREATE TABLE emp (empid int, empname varchar(20), empsalary int, empcity varchar(20));
+show tables;
+INSERT INTO emp values (100,'Ram','10000','Indore');
+INSERT INTO emp values (101,'Shyam',12000,'Indore'),(102,'Raj',15000,'Bhopal');
+INSERT INTO emp(empid,empname,empcity) values (103,'John','Rau');
+DELETE FROM emp WHERE empname='john';
+SELECT empid,empname,empsalary,empcity from emp;
+SELECT * FROM emp;
+SELECT * FROM emp WHERE empsalary>10000;
+SELECT * FROM emp WHERE empsalary>=10000;
+SELECT * FROM emp WHERE empsalary<=10000;
+SELECT * FROM emp WHERE empsalary<10000;
+SELECT * FROM emp WHERE empsalary>10000 AND empcity='INDORE';
+SELECT * FROM emp WHERE empsalary>10000 OR empcity='INDORE';
+SELECT * FROM emp WHERE empsalary>=10000 AND empsalary<=15000;
+SELECT * FROM emp WHERE empsalary between 10000 AND 15000;
+SELECT * FROM emp WHERE empsalary is NULL;
+SELECT * FROM emp WHERE empsalary is not NULL;
+SELECT * FROM emp WHERE empname like 'R%';
+SELECT * FROM emp WHERE empname like '%m';
+SELECT * FROM emp WHERE empname like '%a%';
+SELECT * FROM emp WHERE empname like '_a%';
+SELECT * FROM emp WHERE empname like '%a_';
+SELECT * FROM emp WHERE empname like '___';
+SELECT * FROM emp WHERE empname like '___%';
+SELECT (2+2);
+SELECT (2+2) as Total;
+SELECT empid,empname,empsalary,empsalary+500 as 'salary with bonus',empcity from emp;
+SELECT empid,empname,empsalary,empsalary+(empsalary*0.1) as 'salary with bonus',empcity from emp;
+
+SUM 
+SELECT SUM(empsalary) FROM emp;
+
+MIN
+SELECT MIN(empsalary) FROM emp;
+SELECT * FROM emp WHERE empsalary = (SELECT MIN(empsalary) FROM emp);
+SELECT * FROM emp WHERE empsalary = (SELECT MIN(empsalary) FROM emp where empsalary>(SELECT MIN(empsalary) FROM emp));
+
+MAX
+SELECT MAX(empsalary) FROM emp;
+SELECT * FROM emp WHERE empsalary = (SELECT MAX(empsalary) FROM emp);
+
+AVG
+SELECT AVG(empsalary) FROM emp;
+SELECT SUM(empsalary)/COUNT(empsalary) as average FROM emp;
+
+COUNT
+SELECT COUNT(empsalary) FROM emp;
+SELECT COUNT(*) FROM emp;
+
+UPDATE emp set empsalary=5000 where empid=103;
+
+INSERT INTO emp values (104,'Joshi ji','15000','Indore'),(105,'Sharma ji','15000','Bhopal'),(106,'Gupta ji','12000','Indore'),(107,'Agrawal ji','12000','Indore'),(108,'Manan Atal ji','10000','Indore');
+
+SELECT * FROM emp limit 0,2;
+
+SELECT * FROM emp ORDER BY empsalary;
+SELECT * FROM emp ORDER BY empsalary desc;
+SELECT * FROM emp ORDER BY empsalary desc limit 0,1;
+
+SELECT empcity FROM emp;
+SELECT distinct(empcity) FROM emp;
+SELECT empsalary FROM emp;
+SELECT distinct(empsalary) FROM emp;
+SELECT distinct(empsalary) FROM emp order by empsalary desc;
+SELECT distinct(empsalary) FROM emp order by empsalary desc limit 0,1;
+SELECT * FROM emp WHERE empsalary = (SELECT distinct(empsalary) FROM emp order by empsalary desc limit 0,1);
+

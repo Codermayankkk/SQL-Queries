@@ -1,0 +1,588 @@
+SHOW DATABASES;
+CREATE DATABASE DB25;
+USE DB25;
+DROP DB25;
+SHOW TABLES;
+CREATE TABLE emp(empid int, empname char(10), empsalary int, empcity char(10));
+INSERT INTO emp value(100, 'ram', 10000, 'indore');
+INSERT INTO emp value(102, 'raj', 12000, 'indore');
+INSERT INTO emp value(103, 'shyam', 13000, 'mathura');
+INSERT INTO emp value(104, 'shiv', 15000, 'sehore');
+INSERT INTO emp value(105, 'john', NULL, 'rau');
+SELECT * FROM emp;
+SELECT * FROM emp WHERE empsalary > 10000;
+SELECT * FROM emp WHERE empsalary < 10000;
+SELECT * FROM emp WHERE empsalary <= 10000;
+SELECT * FROM emp WHERE empsalary >= 10000;
+SELECT * FROM emp WHERE empsalary is NULL;
+SELECT * FROM emp WHERE empid IS NOT NULL;
+SELECT * FROM emp WHERE empsalary BETWEEN 12000 AND 15000;
+SELECT * FROM emp WHERE empid like '%m';
+SELECT * FROM emp WHERE empid like 'm%';
+SELECT * FROM emp WHERE empid like '_a%';
+SELECT * FROM emp WHERE empid like '%a%';
+ALTER TABLE emp ADD empfather char(10);
+ALTER TABLE emp CHANGE empmail empmailid varchar(40);
+ALTER TABLE emmp RENAME TO emp;
+ALTER TABLE emp MODIFY empmailid varchar(45);
+ALTER TABLE emp DROP empaddress;
+
+ALIAS = SELECT id AS std_id FROM sd_info;
+
+IN = SELECT * FROM std_info WHERE s_name IN('Akash');
+
+NOT NULL = CREATE TABLE emp(empid int NOT NULL, empname char(10) NOT NULL, empage int);
+         = ALTER TABLE emp MODIFY empid int NOT NULL;
+
+LIMIT = DELETE FROM tablename WHERE empid = '107' LIMIT 1;
+
+PRIMARY KEY = CREATE TABLE ord1(ordid int NOT NULL AUTO_INCREMENT PRIMARY KEY, ordername char(10)); 
+            = INSERT INTO person values(' ', 'aakash','4');
+
+FOREIGN KEY = ALTER TABLE person ADD FOREIGN KEY(s_id) REFERENCES std_info(s_id);
+               SELECT s_name FROM std_info WHERE s_id = 1;
+
+TO COPY FROM 1 table into another table = INSERT INTO emp2 SELECT * FROM emp1;
+
+basic JOIN = SELECT * FROM std_info JOIN person;
+NATURAL JOIN = SELECT * FROM std_info NATURAL JOIN person;
+             = SELECT s_name FROM std_info NATURAL JOIN person WHERE std_info.s_id = person.s_id;
+
+INNER JOIN = SELECT * FROM emp INNER JOIN orders;
+
+LEFT OUTER JOIN = SELECT * FROM emp LEFT OUTER JOIN orders ON emp.empid = orders.empid;
+
+RIGHT OUTER JOIN = SELECT * FROM emp RIGHT OUTER JOIN orders ON emp.empid = orders.empid;
+
+FULL OUTER JOIN = SELECT * FROM emp FULL OUTER JOIN orders ON emp.empid = orders.empid;
+
+
+VIEWS = It restrict user views.
+        Easy complex queries.
+        Query processing simple.
+        Data independence.
+
+        There are two types of views:-
+        1.) Read only view.
+        2.) Updatable view.
+
+CREATING VIEW by using 2 or more tables = CREATE VIEW std3 AS(SELECT std1.name, std2.course FROM std1,std2);
+ 
+Syntax = CREATE VIEW newview AS(SELECT * FROM table_name);
+         UPDATE newview SET column = ' ' WHERE column = ' ';
+
+GROUP BY = SELECT COUNT(empname) FROM emp GROUP BY empname;
+ 
+ORDER BY = SELECT * FROM emp ORDER BY empid desc;
+
+Grant permission :- 
+
+Step - 1 = SELECT user();
+
+Step - 2 = CREATE USER 'mayank'@'localhost'identified by 'mayank';
+
+Step - 3 = SELECT USER FROM mysql.user;
+
+Step - 4 = cd\
+
+Step - 5(path) = cd \Program Files (x86)\MySQL\MySQL Server 5.0\bin
+
+Step - 6 = mysql -u root -p
+
+Step - 7 = password
+
+Step - 8 = exit
+
+Step - 9 = mysql -u mayank -p
+
+Step - 10 = password from another user
+
+Step - 11 = come in root user.
+
+Step - 11 = GRANT SELECT ON svvv.* TO 'mayank'@'localhost';                  
+
+Step - 12 = Then again go to another user.
+
+Step - 13 = And run crucial operation.
+
+Revoke permission:-
+
+Step - 1 = Go to root user -> mysql -u root -p 
+
+Step - 2 = REVOKE SELECT ON *.* FROM 'mayank'@'localhost';
+
+Step - 3 = go to another user -> mysql -u mayank -p
+
+Step - 4 = Then check your command that is revoked is not working.
+
+TCL commands :-
+
+To APPLY tcl commands we have to on tcl switch by using command = SET AUTOCOMMIT = 0;
+
+1.)Rollback :-
+
+Step - 1 = you insert or update or any crucial operation. 
+
+Step - 2 = ROLLBACK;
+
+2.)Commit :-
+
+Step - 1 = you insert or update or any crucial operation.
+
+Step - 2 = COMMIT;
+
+3.)Savepoint:-
+
+Step - 1 = Apply sql opertions.
+
+Example:-
+
+INSERT INTO products VALUES(116, 'headphones', 899);
+
+Step - 2 = make a savepoint.
+
+-> SAVEPOINT s1;
+
+STEP - 3 = to remove a row or rollback a table we have to use the command.
+
+-> ROLLBACK TO s1;
+
+PROCEDURE IN MYSQL:-
+
+creating a procedure:-
+
+DELIMITER @@
+CREATE PROCEDURE A1()
+BEGIN
+SELECT * FROM emp;
+end;
+@@
+
+using a procedure:-
+
+CALL A1();
+@@
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
