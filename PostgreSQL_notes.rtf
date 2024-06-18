@@ -1,180 +1,139 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2761
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
-{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
-{\*\expandedcolortbl;;\csgray\c0;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh18000\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+POSTGRESQL NOTES
 
-\f0\fs24 \cf0                                                                                                                                                                                               
-\fs36  POSTGRESQL NOTES\
-\
+To clear terminal  - control key + L  
 
-\fs28 To clear terminal  - control key + L  \
-\
-To get all database  -  SELECT datname FROM pg_database;\
-To get all database using shell command  -  \\L\
-\
-To create database  -  CREATE DATABASE test; \
-To use another database or wants to enter in another database  -  \\c test\
-\
-To drop database first we have disconnect that database server and move out from it then run query  -  DROP DATABASE test;\
-\
-To drop table  - DROP TABLE emp;\
-\
-To create table  - CREATE TABLE emp(id INT, name VARCHAR(20), city varchar(30));\
-\
-To insert data in table  -  INSERT INTO emp VALUES('101', 'mayank', 'indore'); \
-\
-To show table  -  SELECT * FROM emp;\
-\
-To update data in table -  UPDATE emp SET name = \'91Mayank\'92 WHERE id = \'91101\'92;\
-\
-To delete data in table  - DELETE FROM emp WHERE id = \'91102\'92;\
-\
-Primary Key - CREATE TABLE emp (id INT  PRIMARY KEY);\
-\
-Auto_INCREAMENT - CREATE TABLE emp (id SERIAL);  \
-\
-NOT NULL  -  CREATE TABLE emp (fname varchar(25)   NOT NULL ); \
-\
-Unique Key  -  CREATE TABLE emp (email varchar(50) UNIQUE);\
-\
-Default - CREATE TABLE emp (salary BIGINT NOT NULL  DEFAULT  '30000\'92); \'97>  by default agar kuch value insert yea add nhi krone to default value add ho jayegi.\
-\
-Date - CREATE TABLE emp (hire_date DATE NOT NULL); \
-\
-WHERE CLAUSE :-\
-\
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+To get all database  -  SELECT datname FROM pg_database;
+To get all database using shell command  -  \L
 
-\f1 \cf2 \CocoaLigature0 SELECT * FROM emp WHERE dept = 'Marketing';\
-SELECT * FROM emp WHERE dept = 'Marketing' OR dept = 'Management';\
-SELECT * FROM emp WHERE dept = 'Marketing' AND salary >= 20000;\
-\
-SELECT * FROM emp WHERE dept IN ('IT', 'Marketing'); \
-SELECT * FROM emp WHERE dept NOT IN ('IT', 'Marketing');\
-\
-DISTINCT CLAUSE :-\
-\
-SELECT DISTINCT dept FROM emp;\
-\
-Order by  -  SELECT * FROM emp ORDER BY fname;\
-             Descending - SELECT * FROM emp ORDER BY fname DESC;\
-\
-Limit - SELECT * FROM emp LIMIT 2; \'97> limit tk data bhejega data yea show krega.\
-\
-Like Clause - SELECT * FROM emp WHERE fname LIKE 'M%'; \'97> character se search kana.\
+To create database  -  CREATE DATABASE test; 
+To use another database or wants to enter in another database  -  \c test
+
+To drop database first we have disconnect that database server and move out from it then run query  -  DROP DATABASE test;
+
+To drop table  - DROP TABLE emp;
+
+To create table  - CREATE TABLE emp(id INT, name VARCHAR(20), city varchar(30));
+
+To insert data in table  -  INSERT INTO emp VALUES('101', 'mayank', 'indore'); 
+
+To show table  -  SELECT * FROM emp;
+
+To update data in table -  UPDATE emp SET name = 'Mayank' WHERE id = '101';
+
+To delete data in table  - DELETE FROM emp WHERE id = '102';
+
+Primary Key - CREATE TABLE emp (id INT  PRIMARY KEY);
+
+Auto_INCREAMENT - CREATE TABLE emp (id SERIAL);  
+
+NOT NULL  -  CREATE TABLE emp (fname varchar(25)   NOT NULL ); 
+
+Unique Key  -  CREATE TABLE emp (email varchar(50) UNIQUE);
+
+Default - CREATE TABLE emp (salary BIGINT NOT NULL  DEFAULT  '30000'); -->  by default agar kuch value insert yea add nhi krone to default value add ho jayegi.
+
+Date - CREATE TABLE emp (hire_date DATE NOT NULL);
+
+WHERE CLAUSE :-
+
+SELECT * FROM emp WHERE dept = 'Marketing';
+SELECT * FROM emp WHERE dept = 'Marketing' OR dept = 'Management';
+SELECT * FROM emp WHERE dept = 'Marketing' AND salary >= 20000;
+
+SELECT * FROM emp WHERE dept IN ('IT', 'Marketing'); 
+SELECT * FROM emp WHERE dept NOT IN ('IT', 'Marketing');
+
+DISTINCT CLAUSE :-
+
+SELECT DISTINCT dept FROM emp;
+
+Order by  -  SELECT * FROM emp ORDER BY fname;
+             Descending - SELECT * FROM emp ORDER BY fname DESC;
+
+Limit - SELECT * FROM emp LIMIT 2; --> limit tk data bhejega data yea show krega.
+
+Like Clause - SELECT * FROM emp WHERE fname LIKE 'M%' --> character se search kana.
  
-\f0 \cf0 \CocoaLigature1 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf0 Aggregate functions :- \
-\
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
-
-\f1 \cf2 \CocoaLigature0 SELECT MAX(salary) FROM emp;\
-SELECT MIN(salary) FROM emp;\
-SELECT SUM(salary) FROM emp;\
+Aggregate functions :- 
+ 
+SELECT MAX(salary) FROM emp;
+SELECT MIN(salary) FROM emp;
+SELECT SUM(salary) FROM emp;
 SELECT AVG(salary) FROM emp;
-\f0 \cf0 \CocoaLigature1 \
 
-\f1 \cf2 \CocoaLigature0 SELECT COUNT(salary) FROM emp;\
-\
-Group By :-\
-\
-SELECT dept, COUNT(id) FROM emp GROUP BY dept;\
-SELECT dept, SUM(salary) FROM emp GROUP BY dept;\
-SELECT dept, MAX(salary) FROM emp GROUP BY dept;\
-\
-String functions :- \
-\
-SELECT CONCAT(fname, lname) FROM emp;\
-SELECT id, CONCAT(fname, lname), dept FROM emp;\
-SELECT CONCAT_WS(' ', fname, lname) FROM emp; \'97> with space separator\
-\
-SELECT SUBSTR('Hello World', 1,5);\
-\
-SELECT REPLACE('Hey buddy', 'Hey', 'hello');\
-\
-SELECT REVERSE(fname) FROM emp;\
-\
-SELECT LENGTH('helloo');\
-\
-SELECT LEFT('Hello', 2);\
-\
-SELECT RIGHT('Hello', 2);\
-\
-SELECT TRIM(' heavy   ');\
-\
-SELECT POSITION('ll' in  'hello');\
-\
-SELECT UPPER(fname) FROM emp;\
-\
-SELECT LOWER(lname) FROM emp;\
-\
-ALTER :-\
-\
-ADD - ALTER TABLE emp ADD COLUMN age varchar(20);\
-\
-DROP - ALTER TABLE emp DROP COLUMN age;\
-\
-RENAME COlUMN - ALTER TABLE emp RENAME COLUMN age TO contact;\
-\
-RENAME TABLE  - 	ALTER TABLE emp RENAME TO employees;\
-\
-MODIFICATION or Modify  -  ALTER TABLE emp ALTER COLUMN contact SET DATA TYPE SMALLINT;\
-\
-DEFAULT  -  ALTER TABLE ALTER COLUMN age SET DEFAULT \'910\'92;  \'97\'97> to do we just replace DROP by keyword SET\
-\
-NOT NULL  - ALTER TABLE ALTER COLUMN age SET NOT NULL; \'97\'97> to do we just replace DROP by keyword SET\
-\
-CHECK and CONTRAINTS - ALTER TABLE emp DROP CONTRAINTS mob_no_less_then_10_digit;\
-                       ALTER TABLE emp ADD CONTRAINTS  mob_not_null CHECK (mob >= 10);\
-\
-CASE :-\
-\
-SELECT fname, salary CASE WHEN salary >= 25000 THEN \'91HIGH\'92 ELSE \'91LOW\'92 END AS \'91salary_category\'92 FROM emp;\
-\
-Foreign Key :-\
-\
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+SELECT COUNT(salary) FROM emp;
 
-\fs32 CREATE TABLE orders(ord_id SERIAL PRIMARY KEY, ord_date DATE NOT NULL, cust_id INT NOT NULL, FOREIGN KEY(cust_id) REFERENCES customers(cust_id));\
-\
-JOINS :-\
-\
-CROSS JOIN - SELECT * FROM order_items CROSS JOIN products;\
-INNER JOIN - SELECT * FROM order_items oi INNER JOIN products p ON oi.p_id = p.p_id;\
-LEFT JOIN  - SELECT * FROM order_items oi LEFt JOIN products p ON oi.p_id = p.p_id;\
-RIGHT JOIN - SELECT * FROM order_items oi RIGHT JOIN products p ON oi.p_id = p.p_id;\
-\
-VIEW :-\
-\
-CREATE VIEW billing AS (SELECT * FROM order_items CROSS JOIN products);\
-DROP VIEW billing;\
-\
-Having :- \
-\
-SELECT fname, SUM(salary) FROM emp GROUP BY fname HAVING salary SUM(salary) >= 30000;\
-\
-ROLL UP :- /\
-\
-\
-\
-\
-\
-\
+Group By :-
 
-\fs28  \
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
-\
- \
-\
-\
+SELECT dept, COUNT(id) FROM emp GROUP BY dept;
+SELECT dept, SUM(salary) FROM emp GROUP BY dept;
+SELECT dept, MAX(salary) FROM emp GROUP BY dept;
 
-\f0 \cf0 \CocoaLigature1 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf0 \
-\
-\
-\
-}
+String functions :- 
+
+SELECT CONCAT(fname, lname) FROM emp;
+SELECT id, CONCAT(fname, lname), dept FROM emp;
+SELECT CONCAT_WS(' ', fname, lname) FROM emp; --> with space separator
+
+SELECT SUBSTR('Hello World', 1,5);
+
+SELECT REPLACE('Hey buddy', 'Hey', 'hello');
+
+SELECT REVERSE(fname) FROM emp;
+
+SELECT LENGTH('helloo');
+
+SELECT LEFT('Hello', 2);
+
+SELECT RIGHT('Hello', 2);
+
+SELECT TRIM(' heavy   ');
+
+SELECT POSITION('ll' in  'hello');
+
+SELECT UPPER(fname) FROM emp;
+
+SELECT LOWER(lname) FROM emp;
+
+ALTER :-
+
+ADD - ALTER TABLE emp ADD COLUMN age varchar(20);
+
+DROP - ALTER TABLE emp DROP COLUMN age;
+
+RENAME COlUMN - ALTER TABLE emp RENAME COLUMN age TO contact;
+
+RENAME TABLE  - 	ALTER TABLE emp RENAME TO employees;
+
+MODIFICATION or Modify  -  ALTER TABLE emp ALTER COLUMN contact SET DATA TYPE SMALLINT;
+
+DEFAULT  -  ALTER TABLE ALTER COLUMN age SET DEFAULT --> to do we just replace DROP by keyword SET
+
+NOT NULL  - ALTER TABLE ALTER COLUMN age SET NOT NULL; --> to do we just replace DROP by keyword SET
+
+CHECK and CONTRAINTS - ALTER TABLE emp DROP CONTRAINTS mob_no_less_then_10_digit;
+                       ALTER TABLE emp ADD CONTRAINTS  mob_not_null CHECK (mob >= 10);
+
+CASE :-
+
+SELECT fname, salary CASE WHEN salary >= 25000 THEN 'HIGH' ELSE 'LOW' END AS salary_category FROM emp;
+
+Foreign Key :-
+
+CREATE TABLE orders(ord_id SERIAL PRIMARY KEY, ord_date DATE NOT NULL, cust_id INT NOT NULL, FOREIGN KEY(cust_id) REFERENCES customers(cust_id));
+
+JOINS :-
+
+CROSS JOIN - SELECT * FROM order_items CROSS JOIN products;
+INNER JOIN - SELECT * FROM order_items oi INNER JOIN products p ON oi.p_id = p.p_id;
+LEFT JOIN  - SELECT * FROM order_items oi LEFt JOIN products p ON oi.p_id = p.p_id;
+RIGHT JOIN - SELECT * FROM order_items oi RIGHT JOIN products p ON oi.p_id = p.p_id;
+
+VIEW :-
+
+CREATE VIEW billing AS (SELECT * FROM order_items CROSS JOIN products);
+DROP VIEW billing;
+
+Having :- 
+
+SELECT fname, SUM(salary) FROM emp GROUP BY fname HAVING salary SUM(salary) >= 30000;
