@@ -16,7 +16,7 @@ Data Definition: CREATE, ALTER, and DROP statements for database and table manag
 
 Advanced Features: Demonstrations of views, stored procedures, triggers, and transactions.
 
-Purpose
+## Purpose
 This collection aims to:
 
 Serve as a quick reference for developers working with PostgreSQL and MySQL
