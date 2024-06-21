@@ -2,7 +2,7 @@
 
 This repository serves as a comprehensive resource for SQL queries, covering both PostgreSQL and MySQL database management systems. It provides a wide range of SQL examples and best practices, demonstrating the nuances and capabilities of each system.
 
-Key Features
+## Key Features
 
 Extensive Query Coverage: From basic SELECT statements to complex JOINs and subqueries.
 
